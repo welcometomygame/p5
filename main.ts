@@ -78,13 +78,6 @@ let GK2 = sprites.create(img`
 GK2.follow(RED_TEAM, 20)
 GK2.setPosition(900, 150)
 forever(function () {
-    if (controller.B.isPressed()) {
-        if (RED_TEAM.overlapsWith(Ball2)) {
-            controller.moveSprite(Ball2, 105, 105)
-        }
-    }
-})
-forever(function () {
     if (controller.A.isPressed()) {
         controller.moveSprite(Ball2, 200, 200)
     }
@@ -96,8 +89,15 @@ forever(function () {
     }
 })
 forever(function () {
-    if (DEF_3.overlapsWith(RED_TEAM)) {
-        sprites.destroy(RED_TEAM)
+    if (controller.B.isPressed()) {
+        if (RED_TEAM.overlapsWith(Ball2)) {
+            controller.moveSprite(Ball2, 105, 105)
+        }
+    }
+})
+forever(function () {
+    if (GK2.overlapsWith(Ball2)) {
+        sprites.destroy(Ball2)
         game.gameOver(false)
     }
 })
@@ -114,8 +114,8 @@ forever(function () {
     }
 })
 forever(function () {
-    if (GK2.overlapsWith(Ball2)) {
-        sprites.destroy(Ball2)
+    if (DEF_3.overlapsWith(RED_TEAM)) {
+        sprites.destroy(RED_TEAM)
         game.gameOver(false)
     }
 })
